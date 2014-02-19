@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Should;
 
@@ -42,15 +42,20 @@ namespace TicTacToe.Tests
         {
             var xSpaces = moves.Where((move, index) => index % 2 == 0);
             var oSpaces = moves.Where((move, index) => index % 2 == 1);
-            if (xSpaces.Count(space => space.StartsWith("A")) == 3)
+            if (SideWinsForRow(xSpaces, "A"))
             {
                 return "X";
             }
-            if (oSpaces.Count(space => space.StartsWith("A")) == 3)
+            if (SideWinsForRow(oSpaces, "A"))
             {
                 return "O";
             }
             return null;
+        }
+
+        private bool SideWinsForRow(IEnumerable<string> sideSpaces, string rowIdentifier)
+        {
+            return sideSpaces.Count(space => space.StartsWith(rowIdentifier)) == 3;
         }
     }
 }
