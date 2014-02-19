@@ -6,7 +6,7 @@ using Should;
 namespace TicTacToe.Tests
 {
     [TestFixture]
-    public class Tests1
+    public class WhenPlayingTicTacToeGameViaGameMoves
     {
         [Test]
         public void XShouldWinWithEntireTopRow()
