@@ -15,7 +15,7 @@ namespace TicTacToe.Tests
             // O O
             // 
             var winner = Outcome("A1", "B1", "A2", "B2", "A3");
-            winner.ShouldEqual("X");
+            winner.ShouldEqual(GameResult.XWins);
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace TicTacToe.Tests
             // X X
             // X
             var winner = Outcome("B1", "A1", "B2", "A2", "C1", "A3");
-            winner.ShouldEqual("O");
+            winner.ShouldEqual(GameResult.OWins);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace TicTacToe.Tests
             // O O 
             // X O
             var winner = Outcome("C!", "C2", "A1", "B1", "A2", "B2", "A3");
-            winner.ShouldEqual("X");
+            winner.ShouldEqual(GameResult.XWins);
         }
 
         [Test]
@@ -45,24 +45,24 @@ namespace TicTacToe.Tests
             // O O X
             // X O X
             var winner = Outcome("C!", "C2", "A1", "B1", "A2", "B2", "B3", "A3", "C3");
-            winner.ShouldEqual("Tie");
+            winner.ShouldEqual(GameResult.NoWinner);
         }
 
-        private string Outcome(params string[] moves)
+        private GameResult? Outcome(params string[] moves)
         {
             var xSpaces = moves.Where((move, index) => index % 2 == 0);
             var oSpaces = moves.Where((move, index) => index % 2 == 1);
             if (SideWinsForRow(xSpaces, "A"))
             {
-                return "X";
+                return GameResult.XWins;
             }
             if (SideWinsForRow(oSpaces, "A"))
             {
-                return "O";
+                return GameResult.OWins;
             }
             if (moves.Length == 9)
             {
-                return "Tie";
+                return GameResult.NoWinner;
             }
             return null;
         }
@@ -70,6 +70,13 @@ namespace TicTacToe.Tests
         private bool SideWinsForRow(IEnumerable<string> sideSpaces, string rowIdentifier)
         {
             return sideSpaces.Count(space => space.StartsWith(rowIdentifier)) == 3;
+        }
+
+        private enum GameResult
+        {
+            XWins,
+            OWins,
+            NoWinner
         }
     }
 }
