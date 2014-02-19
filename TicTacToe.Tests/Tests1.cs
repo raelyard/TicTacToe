@@ -11,6 +11,9 @@ namespace TicTacToe.Tests
         [Test]
         public void XShouldWinWithEntireTopRow()
         {
+            // X X X
+            // O O
+            // 
             var winner = Outcome("A1", "B1", "A2", "B2", "A3");
             winner.ShouldEqual("X");
         }
@@ -18,6 +21,9 @@ namespace TicTacToe.Tests
         [Test]
         public void OShouldWinWithEntireTopRow()
         {
+            // O O O
+            // X X
+            // X
             var winner = Outcome("B1", "A1", "B2", "A2", "C1", "A3");
             winner.ShouldEqual("O");
         }
@@ -25,6 +31,9 @@ namespace TicTacToe.Tests
         [Test]
         public void XShouldWinWithEntireTopRowWithOtherInitialMove()
         {
+            // X X X
+            // O O 
+            // X O
             var winner = Outcome("C!", "C2", "A1", "B1", "A2", "B2", "A3");
             winner.ShouldEqual("X");
         }
