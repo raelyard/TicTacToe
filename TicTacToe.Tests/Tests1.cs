@@ -38,6 +38,16 @@ namespace TicTacToe.Tests
             winner.ShouldEqual("X");
         }
 
+        [Test]
+        public void GameShouldFinishInTieWithNoRowsControlled()
+        {
+            // X X O
+            // O O X
+            // X O X
+            var winner = Outcome("C!", "C2", "A1", "B1", "A2", "B2", "B3", "A3", "C3");
+            winner.ShouldEqual("Tie");
+        }
+
         private string Outcome(params string[] moves)
         {
             var xSpaces = moves.Where((move, index) => index % 2 == 0);
@@ -49,6 +59,10 @@ namespace TicTacToe.Tests
             if (SideWinsForRow(oSpaces, "A"))
             {
                 return "O";
+            }
+            if (moves.Length == 9)
+            {
+                return "Tie";
             }
             return null;
         }
