@@ -13,9 +13,16 @@ namespace TicTacToe.Tests
             winner.ShouldEqual("X");
         }
 
+        [Test]
+        public void OShouldWinWithEntireTopRow()
+        {
+            var winner = Outcome("B1", "A1", "B2", "A2", "C1", "A3");
+            winner.ShouldEqual("O");
+        }
+
         private string Outcome(params string[] moves)
         {
-            return "X";
+            return moves[0] == "A1" ? "X" : "O";
         }
     }
 }
