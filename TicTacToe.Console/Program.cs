@@ -1,5 +1,4 @@
-﻿using System.Runtime.Remoting.Messaging;
-using TicTacToe.Console.Model;
+﻿using TicTacToe.Console.Model;
 
 namespace TicTacToe.Console
 {
