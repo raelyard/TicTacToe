@@ -71,12 +71,24 @@ namespace TicTacToe.Tests
         {
             return sideSpaces.Count(space => space.StartsWith(rowIdentifier)) == 3;
         }
+    }
 
-        private enum GameResult
+    public class Game
+    {
+        public void Move(string space)
         {
-            XWins,
-            OWins,
-            NoWinner
         }
+
+        public GameResult? OutCome
+        {
+            get { return null; }
+        }
+    }
+
+    public enum GameResult
+    {
+        XWins,
+        OWins,
+        NoWinner
     }
 }
